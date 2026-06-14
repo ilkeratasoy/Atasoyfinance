@@ -1,0 +1,627 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#F7F7F8;color:#1A1A1A;font-size:14px}
+
+/* ── TOP BAR ── */
+.topbar{background:#FF6000;padding:6px 0;text-align:center}
+.topbar span{color:#fff;font-size:12px;font-weight:500;letter-spacing:.2px}
+.topbar b{background:rgba(255,255,255,.2);padding:1px 8px;border-radius:20px;margin-left:8px}
+
+/* ── HEADER ── */
+.header{background:#fff;border-bottom:1px solid #EBEBEB;padding:0 24px}
+.header-top{display:flex;align-items:center;gap:16px;padding:12px 0;max-width:1200px;margin:0 auto}
+.logo-wrap{display:flex;align-items:center;gap:3px}
+.logo-mark{width:36px;height:36px;background:#FF6000;border-radius:8px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:22px;height:22px}
+.logo-text{font-size:22px;font-weight:700;color:#FF6000;letter-spacing:-1px}
+.logo-text span{color:#1A1A1A}
+
+.search-wrap{flex:1;max-width:600px;display:flex;gap:0}
+.search-cat{padding:0 12px;border:1.5px solid #FF6000;border-right:none;border-radius:8px 0 0 8px;background:#FFF5F0;font-size:13px;color:#FF6000;font-weight:500;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.search-cat svg{width:12px;height:12px}
+.search-input{flex:1;border:1.5px solid #FF6000;border-right:none;border-left:none;padding:0 14px;font-size:14px;outline:none;font-family:'Inter',sans-serif;background:#fff}
+.search-btn{padding:0 18px;background:#FF6000;border:none;border-radius:0 8px 8px 0;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.search-btn svg{width:18px;height:18px;fill:#fff}
+
+.header-actions{display:flex;align-items:center;gap:8px;margin-left:auto}
+.h-btn{display:flex;flex-direction:column;align-items:center;padding:6px 10px;border:none;background:transparent;cursor:pointer;border-radius:8px;transition:background .15s;gap:2px;text-decoration:none}
+.h-btn:hover{background:#F5F5F5}
+.h-btn svg{width:22px;height:22px;stroke:#444;fill:none;stroke-width:1.8}
+.h-btn span{font-size:11px;color:#666;font-weight:500}
+.cart-btn{background:#FF6000;border-radius:8px;padding:8px 16px;display:flex;align-items:center;gap:8px;border:none;cursor:pointer}
+.cart-btn svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:1.8}
+.cart-btn .ct{color:#fff;font-size:13px;font-weight:600}
+.cart-count{background:#fff;color:#FF6000;font-size:11px;font-weight:700;padding:1px 6px;border-radius:10px}
+
+/* ── NAV ── */
+.nav{background:#fff;border-bottom:1px solid #EBEBEB}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:0}
+.nav-item{padding:11px 14px;font-size:13px;font-weight:500;color:#333;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
+.nav-item:hover{color:#FF6000;border-bottom-color:#FF6000}
+.nav-item.active{color:#FF6000;border-bottom-color:#FF6000;font-weight:600}
+.nav-sep{color:#DEDEDE;padding:0 2px;font-size:18px;align-self:center}
+
+/* ── LAYOUT ── */
+.page{max-width:1200px;margin:0 auto;padding:16px 24px}
+.main-grid{display:grid;grid-template-columns:200px 1fr;gap:16px}
+
+/* ── SIDEBAR ── */
+.sidebar{}
+.sb-section{background:#fff;border:1px solid #EBEBEB;border-radius:10px;margin-bottom:12px;overflow:hidden}
+.sb-head{padding:12px 14px;font-size:13px;font-weight:600;color:#1A1A1A;border-bottom:1px solid #F2F2F2;display:flex;justify-content:space-between;align-items:center}
+.sb-head svg{width:14px;height:14px;stroke:#999;fill:none;stroke-width:2}
+.sb-list{padding:8px 0}
+.sb-item{padding:7px 14px;font-size:13px;color:#444;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .12s}
+.sb-item:hover{background:#FFF5F0;color:#FF6000}
+.sb-item.active{color:#FF6000;font-weight:500}
+.sb-count{font-size:11px;color:#999;background:#F5F5F5;padding:1px 7px;border-radius:10px}
+.filter-row{padding:8px 14px;display:flex;flex-direction:column;gap:6px}
+.filter-label{font-size:12px;color:#888;font-weight:500}
+.price-range{display:flex;gap:6px;align-items:center}
+.price-input{width:70px;border:1px solid #E0E0E0;border-radius:6px;padding:5px 8px;font-size:12px;text-align:center;font-family:'Inter',sans-serif}
+.filter-btn{width:100%;margin:6px 14px;margin-right:14px;width:calc(100% - 28px);padding:7px;background:#FF6000;border:none;border-radius:7px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
+.star-row{display:flex;align-items:center;gap:6px;padding:5px 14px;cursor:pointer}
+.stars-svg{color:#FFA500;font-size:13px}
+.star-label{font-size:12px;color:#555}
+
+/* ── HERO ── */
+.hero{border-radius:12px;overflow:hidden;margin-bottom:16px;position:relative;background:#FFF0E8;height:240px;display:flex;align-items:center}
+.hero-content{padding:32px 36px;flex:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;background:#FF6000;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:12px;letter-spacing:.4px}
+.hero-title{font-size:28px;font-weight:700;color:#1A1A1A;line-height:1.2;margin-bottom:8px}
+.hero-title em{color:#FF6000;font-style:normal}
+.hero-sub{font-size:13px;color:#666;margin-bottom:18px;line-height:1.5}
+.hero-btns{display:flex;gap:10px}
+.hero-btn-primary{padding:10px 22px;background:#FF6000;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
+.hero-btn-sec{padding:10px 22px;background:#fff;color:#FF6000;border:1.5px solid #FF6000;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
+.hero-visual{width:260px;height:240px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;flex-shrink:0}
+.hero-img-stack{display:flex;gap:-20px;padding:20px}
+
+/* ── FLASH SALE ── */
+.flash-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.flash-title{display:flex;align-items:center;gap:8px}
+.flash-badge{background:#FF6000;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px;letter-spacing:.3px}
+.flash-name{font-size:16px;font-weight:700;color:#1A1A1A}
+.countdown{display:flex;align-items:center;gap:4px}
+.cd-box{background:#1A1A1A;color:#fff;font-size:15px;font-weight:700;padding:4px 9px;border-radius:5px;min-width:34px;text-align:center;font-variant-numeric:tabular-nums}
+.cd-sep{color:#999;font-weight:700;font-size:14px}
+
+/* ── PRODUCT GRID ── */
+.products-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sort-row{display:flex;align-items:center;gap:8px}
+.sort-label{font-size:13px;color:#888}
+.sort-pill{padding:5px 12px;border:1px solid #E0E0E0;border-radius:20px;font-size:12px;color:#555;cursor:pointer;background:#fff;transition:all .15s;font-family:'Inter',sans-serif}
+.sort-pill.active{background:#FF6000;color:#fff;border-color:#FF6000}
+.view-count{font-size:13px;color:#888}
+
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.pcard{background:#fff;border:1px solid #EBEBEB;border-radius:10px;overflow:hidden;cursor:pointer;transition:all .18s;position:relative}
+.pcard:hover{border-color:#FFB399;box-shadow:0 4px 16px rgba(255,96,0,.1);transform:translateY(-2px)}
+.pcard-img{background:#F7F7F7;aspect-ratio:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.pcard-emoji{font-size:60px;opacity:.85}
+.pcard-badges{position:absolute;top:8px;left:8px;display:flex;flex-direction:column;gap:4px}
+.badge{font-size:10px;font-weight:700;padding:3px 7px;border-radius:4px;letter-spacing:.3px}
+.badge-sale{background:#FF6000;color:#fff}
+.badge-new{background:#00B074;color:#fff}
+.badge-ship{background:#3B82F6;color:#fff}
+.badge-best{background:#7C3AED;color:#fff}
+.fav-btn{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;background:#fff;border:1px solid #E8E8E8;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.fav-btn svg{width:14px;height:14px;stroke:#ccc;fill:none;stroke-width:2}
+.pcard-body{padding:10px 12px}
+.pcard-brand{font-size:11px;color:#FF6000;font-weight:600;margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px}
+.pcard-name{font-size:13px;color:#1A1A1A;line-height:1.35;margin-bottom:6px;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pcard-rating{display:flex;align-items:center;gap:4px;margin-bottom:6px}
+.rating-stars{color:#FFA500;font-size:12px;letter-spacing:-1px}
+.rating-count{font-size:11px;color:#888}
+.pcard-price-row{display:flex;align-items:baseline;gap:6px;margin-bottom:8px}
+.price-now{font-size:17px;font-weight:700;color:#FF6000}
+.price-orig{font-size:12px;color:#aaa;text-decoration:line-through}
+.price-disc{font-size:11px;font-weight:600;color:#00B074;background:#E6F9F2;padding:2px 6px;border-radius:4px}
+.pcard-meta{font-size:11px;color:#888;margin-bottom:8px;display:flex;align-items:center;gap:4px}
+.pcard-meta svg{width:12px;height:12px;stroke:#00B074;fill:none;stroke-width:2}
+.add-cart{width:100%;padding:8px;background:#FFF3ED;border:1.5px solid #FF6000;border-radius:7px;color:#FF6000;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:6px}
+.add-cart svg{width:14px;height:14px;stroke:#FF6000;fill:none;stroke-width:2}
+.add-cart:hover{background:#FF6000;color:#fff}
+.add-cart:hover svg{stroke:#fff}
+
+/* ── CATEGORIES STRIP ── */
+.cat-strip{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-bottom:16px}
+.cat-card{background:#fff;border:1px solid #EBEBEB;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .15s}
+.cat-card:hover{border-color:#FF6000;background:#FFF5F0}
+.cat-icon{font-size:24px;margin-bottom:6px;display:block}
+.cat-label{font-size:11px;color:#444;font-weight:500;line-height:1.2}
+
+/* ── BANNERS ROW ── */
+.banners{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px}
+.banner{border-radius:10px;padding:16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;overflow:hidden;position:relative}
+.b1{background:#EFF6FF}
+.b2{background:#F0FDF4}
+.b3{background:#FEF3C7}
+.banner-text .bt1{font-size:13px;font-weight:700;color:#1A1A1A;margin-bottom:3px}
+.banner-text .bt2{font-size:11px;color:#666}
+.banner-icon{font-size:36px;opacity:.6}
+
+/* ── SECTION HEADING ── */
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sec-title{font-size:17px;font-weight:700;color:#1A1A1A;display:flex;align-items:center;gap:8px}
+.sec-title-bar{width:4px;height:20px;background:#FF6000;border-radius:2px}
+.see-more{font-size:13px;color:#FF6000;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:4px}
+.see-more svg{width:14px;height:14px;stroke:#FF6000;fill:none;stroke-width:2.5}
+
+/* ── FOOTER ── */
+.footer{background:#1A1A1A;margin-top:32px;padding:32px 24px 20px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:28px}
+.footer-brand .fb-logo{font-size:20px;font-weight:700;color:#FF6000;margin-bottom:8px}
+.footer-brand p{font-size:12px;color:#888;line-height:1.7;max-width:220px}
+.footer-col h4{font-size:12px;font-weight:600;color:#fff;margin-bottom:12px;text-transform:uppercase;letter-spacing:.6px}
+.footer-col a{display:block;font-size:12px;color:#888;margin-bottom:7px;cursor:pointer;transition:color .15s}
+.footer-col a:hover{color:#FF6000}
+.footer-bottom{border-top:1px solid #2A2A2A;padding-top:16px;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:12px;color:#666}
+.footer-pay{display:flex;gap:8px;align-items:center}
+.pay-badge{background:#2A2A2A;border:1px solid #3A3A3A;border-radius:5px;padding:4px 8px;font-size:11px;color:#aaa;font-weight:500}
+
+/* ── TRUST BAR ── */
+.trust-bar{background:#fff;border-top:1px solid #EBEBEB;border-bottom:1px solid #EBEBEB;padding:14px 24px;margin-bottom:0}
+.trust-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.trust-item{display:flex;align-items:center;gap:10px;padding:0 20px;border-right:1px solid #F0F0F0}
+.trust-item:first-child{padding-left:0}
+.trust-item:last-child{border-right:none}
+.trust-icon{width:36px;height:36px;background:#FFF3ED;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.trust-icon svg{width:20px;height:20px;stroke:#FF6000;fill:none;stroke-width:1.8}
+.trust-text .tt1{font-size:13px;font-weight:600;color:#1A1A1A}
+.trust-text .tt2{font-size:11px;color:#888}
+
+.products-full{grid-template-columns:repeat(5,1fr)}
+</style>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>Yeni Üyelere Özel: İlk Siparişte %15 İndirim <b>IMPORTX15</b> kodunu kullan!</span>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div class="logo-wrap">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div style="margin-left:8px">
+        <div class="logo-text">Import<span>X</span></div>
+        <div style="font-size:10px;color:#999;margin-top:-2px;letter-spacing:.3px">Konteyner'dan kapınıza</div>
+      </div>
+    </div>
+
+    <div class="search-wrap" style="margin:0 24px">
+      <div class="search-cat">
+        Tüm Kategoriler
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <input class="search-input" placeholder="Ürün, kategori veya marka ara..." value="kablosuz kulaklık">
+      <button class="search-btn">
+        <svg viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+      </button>
+    </div>
+
+    <div class="header-actions">
+      <a class="h-btn">
+        <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Hesabım</span>
+      </a>
+      <a class="h-btn">
+        <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        <span>Favoriler</span>
+      </a>
+      <a class="h-btn">
+        <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        <span>Siparişler</span>
+      </a>
+      <button class="cart-btn">
+        <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+        <span class="ct">Sepet</span>
+        <span class="cart-count">3</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <div class="nav-item active">Ana Sayfa</div>
+    <div class="nav-sep">|</div>
+    <div class="nav-item">Elektronik</div>
+    <div class="nav-item">Ev & Yaşam</div>
+    <div class="nav-item">Moda & Giyim</div>
+    <div class="nav-item">Kozmetik</div>
+    <div class="nav-item">Endüstriyel</div>
+    <div class="nav-item">Gıda & Market</div>
+    <div class="nav-item">Otomotiv</div>
+    <div class="nav-item" style="color:#FF6000;font-weight:600">⚡ Flash Fırsat</div>
+    <div class="nav-item" style="margin-left:auto;color:#00B074;font-weight:600">B2B Toplu Alım</div>
+    <div class="nav-item">Tedarikçi Ol</div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="trust-text"><div class="tt1">Ücretsiz Kargo</div><div class="tt2">200 TL üzeri tüm siparişler</div></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M3 10h18M7 15h1m4 0h1M3 4h18a1 1 0 011 1v14a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z"/></svg></div>
+      <div class="trust-text"><div class="tt1">Güvenli Ödeme</div><div class="tt2">256-bit SSL şifreleme</div></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div>
+      <div class="trust-text"><div class="tt1">Kolay İade</div><div class="tt2">14 gün içinde ücretsiz iade</div></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>
+      <div class="trust-text"><div class="tt1">7/24 Destek</div><div class="tt2">Canlı chat & telefon desteği</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- HERO + CATS -->
+  <div class="hero" style="margin-bottom:14px">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        YENİ KONTEYNER GELDİ
+      </div>
+      <div class="hero-title">Dünya'dan ithal,<br><em>kapınıza teslim</em></div>
+      <div class="hero-sub">380+ ithalatçı, 14.000+ ürün — gümrük, depo<br>ve teslimat tamamen çözülmüş şekilde.</div>
+      <div class="hero-btns">
+        <button class="hero-btn-primary">Hemen Alışverişe Başla</button>
+        <button class="hero-btn-sec">Nasıl Çalışır?</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:16px">
+        <div style="background:#fff;border-radius:10px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08)">
+          <div style="font-size:30px;margin-bottom:4px">🎧</div>
+          <div style="font-size:10px;color:#888">Elektronik</div>
+          <div style="font-size:12px;font-weight:700;color:#FF6000">₺1.290</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08)">
+          <div style="font-size:30px;margin-bottom:4px">🏮</div>
+          <div style="font-size:10px;color:#888">Ev & Yaşam</div>
+          <div style="font-size:12px;font-weight:700;color:#FF6000">₺485</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08)">
+          <div style="font-size:30px;margin-bottom:4px">⚡</div>
+          <div style="font-size:10px;color:#888">Aksesuar</div>
+          <div style="font-size:12px;font-weight:700;color:#FF6000">₺349</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08)">
+          <div style="font-size:30px;margin-bottom:4px">🌿</div>
+          <div style="font-size:10px;color:#888">Gıda</div>
+          <div style="font-size:12px;font-weight:700;color:#FF6000">₺215</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAT STRIP -->
+  <div class="cat-strip">
+    <div class="cat-card"><span class="cat-icon">📱</span><div class="cat-label">Elektronik</div></div>
+    <div class="cat-card"><span class="cat-icon">🏠</span><div class="cat-label">Ev & Yaşam</div></div>
+    <div class="cat-card"><span class="cat-icon">👗</span><div class="cat-label">Moda</div></div>
+    <div class="cat-card"><span class="cat-icon">💄</span><div class="cat-label">Kozmetik</div></div>
+    <div class="cat-card"><span class="cat-icon">🔧</span><div class="cat-label">Endüstriyel</div></div>
+    <div class="cat-card"><span class="cat-icon">🌿</span><div class="cat-label">Gıda</div></div>
+    <div class="cat-card"><span class="cat-icon">🚗</span><div class="cat-label">Otomotiv</div></div>
+    <div class="cat-card"><span class="cat-icon">⚽</span><div class="cat-label">Spor</div></div>
+  </div>
+
+  <!-- 3 BANNER ROW -->
+  <div class="banners">
+    <div class="banner b1">
+      <div class="banner-text"><div class="bt1">Hızlı Teslimat</div><div class="bt2">Aynı gün kargo imkânı</div></div>
+      <span class="banner-icon">🚚</span>
+    </div>
+    <div class="banner b2">
+      <div class="banner-text"><div class="bt1">B2B Toplu Alım</div><div class="bt2">Palet & konteyner fiyatı</div></div>
+      <span class="banner-icon">📦</span>
+    </div>
+    <div class="banner b3">
+      <div class="banner-text"><div class="bt1">İthalatçı Ol</div><div class="bt2">Ürünlerini platforma ekle</div></div>
+      <span class="banner-icon">🌍</span>
+    </div>
+  </div>
+
+  <!-- FLASH SALE -->
+  <div style="background:#fff;border:1px solid #EBEBEB;border-radius:12px;padding:16px 20px;margin-bottom:20px">
+    <div class="flash-row">
+      <div class="flash-title">
+        <div class="flash-badge">⚡ FLASH SATIŞ</div>
+        <div class="flash-name">Sınırlı Süre İndirimleri</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:12px;color:#888">Bitiş:</span>
+        <div class="countdown">
+          <div class="cd-box" id="fh">08</div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box" id="fm">43</div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box" id="fs">22</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="products" style="grid-template-columns:repeat(5,1fr)">
+      <div class="pcard">
+        <div class="pcard-img"><span class="pcard-emoji">🎧</span>
+          <div class="pcard-badges"><span class="badge badge-sale">-%40</span></div>
+          <div class="fav-btn"><svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-brand">SoundTech</div>
+          <div class="pcard-name">Pro Wireless Kulaklık ANC X7</div>
+          <div class="pcard-rating"><span class="rating-stars">★★★★★</span><span class="rating-count">(2.847)</span></div>
+          <div class="pcard-price-row"><span class="price-now">₺1.290</span><span class="price-orig">₺2.150</span><span class="price-disc">-%40</span></div>
+          <div class="pcard-meta"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Yarın teslim</div>
+          <button class="add-cart"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/></svg>Sepete Ekle</button>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-img"><span class="pcard-emoji">🏮</span>
+          <div class="pcard-badges"><span class="badge badge-new">YENİ</span></div>
+          <div class="fav-btn"><svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-brand">HomeDecor</div>
+          <div class="pcard-name">Bambu Masa Lambası Seti (3'lü)</div>
+          <div class="pcard-rating"><span class="rating-stars">★★★★☆</span><span class="rating-count">(648)</span></div>
+          <div class="pcard-price-row"><span class="price-now">₺485</span><span class="price-orig">₺720</span><span class="price-disc">-%33</span></div>
+          <div class="pcard-meta"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Ücretsiz kargo</div>
+          <button class="add-cart"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/></svg>Sepete Ekle</button>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-img"><span class="pcard-emoji">⚡</span>
+          <div class="pcard-badges"><span class="badge badge-sale">-%41</span><span class="badge badge-ship">Hızlı</span></div>
+          <div class="fav-btn"><svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-brand">ElektroParts</div>
+          <div class="pcard-name">GaN 65W Şarj Cihazı USB-C/A</div>
+          <div class="pcard-rating"><span class="rating-stars">★★★★★</span><span class="rating-count">(5.123)</span></div>
+          <div class="pcard-price-row"><span class="price-now">₺349</span><span class="price-orig">₺595</span><span class="price-disc">-%41</span></div>
+          <div class="pcard-meta"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Bugün kargo</div>
+          <button class="add-cart"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/></svg>Sepete Ekle</button>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-img"><span class="pcard-emoji">🌿</span>
+          <div class="pcard-badges"><span class="badge badge-best">ÇOK SATAN</span></div>
+          <div class="fav-btn"><svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-brand">NaturalSpice</div>
+          <div class="pcard-name">Hint Baharatı Premium Set 12 Çeşit</div>
+          <div class="pcard-rating"><span class="rating-stars">★★★★☆</span><span class="rating-count">(1.290)</span></div>
+          <div class="pcard-price-row"><span class="price-now">₺215</span><span class="price-orig">₺310</span><span class="price-disc">-%31</span></div>
+          <div class="pcard-meta"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Yarın teslim</div>
+          <button class="add-cart"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/></svg>Sepete Ekle</button>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-img"><span class="pcard-emoji">🖥</span>
+          <div class="pcard-badges"><span class="badge badge-sale">-%34</span></div>
+          <div class="fav-btn"><svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-brand">TechBulk</div>
+          <div class="pcard-name">Monitör Stand Ergonomik Alüm. 27"</div>
+          <div class="pcard-rating"><span class="rating-stars">★★★★★</span><span class="rating-count">(874)</span></div>
+          <div class="pcard-price-row"><span class="price-now">₺890</span><span class="price-orig">₺1.340</span><span class="price-disc">-%34</span></div>
+          <div class="pcard-meta"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Ücretsiz kargo</div>
+          <button class="add-cart"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/></svg>Sepete Ekle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECOMMENDED -->
+  <div style="background:#fff;border:1px solid #EBEBEB;border-radius:12px;padding:16px 20px;margin-bottom:20px">
+    <div class="sec-head">
+      <div class="sec-title"><div class="sec-title-bar"></div>Sana Özel Öneriler</div>
+      <div class="see-more">Tümünü Gör <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+    <div class="products" style="grid-template-columns:repeat(5,1fr)">
+      <div class="pcard">
+        <div class="pcard-img" style="background:#F0F5FF"><span class="pcard-emoji">📡</span>
+          <div class="fav-btn"><svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-brand">NetMaster</div>
+          <div class="pcard-name">WiFi 6E Router Mesh Sistem 3'lü Set</div>
+          <div class="pcard-rating"><span class="rating-stars">★★★★★</span><span class="rating-count">(3.401)</span></div>
+          <div class="pcard-price-row"><span class="price-now">₺3.490</span><span class="price-orig">₺4.800</span><span class="price-disc">-%27</span></div>
+          <div class="pcard-meta"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Yarın teslim</div>
+          <button class="add-cart"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/></svg>Sepete Ekle</button>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-img" style="background:#FFF5F0"><span class="pcard-emoji">🪑</span>
+          <div class="pcard-badges"><span class="badge badge-new">YENİ</span></div>
+          <div class="fav-btn"><svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-brand">ErgoMax</div>
+          <div class="pcard-name">Ergonomik Ofis Koltuğu Mesh Bel Destekli</div>
+          <div class="pcard-rating"><span class="rating-stars">★★★★☆</span><span class="rating-count">(912)</span></div>
+          <div class="pcard-price-row"><span class="price-now">₺4.290</span><span class="price-orig">₺6.500</span><span class="price-disc">-%34</span></div>
+          <div class="pcard-meta"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>2 günde teslim</div>
+          <button class="add-cart"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/></svg>Sepete Ekle</button>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-img" style="background:#F0FDF4"><span class="pcard-emoji">🍵</span>
+          <div class="pcard-badges"><span class="badge badge-best">ÇOK SATAN</span></div>
+          <div class="fav-btn"><svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-brand">TeaWorld</div>
+          <div class="pcard-name">Japon Matcha Premium Grade 100g Tin Kutu</div>
+          <div class="pcard-rating"><span class="rating-stars">★★★★★</span><span class="rating-count">(4.208)</span></div>
+          <div class="pcard-price-row"><span class="price-now">₺390</span><span class="price-orig">₺550</span><span class="price-disc">-%29</span></div>
+          <div class="pcard-meta"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Bugün kargo</div>
+          <button class="add-cart"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/></svg>Sepete Ekle</button>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-img" style="background:#FEF9E7"><span class="pcard-emoji">💡</span>
+          <div class="pcard-badges"><span class="badge badge-sale">-%45</span></div>
+          <div class="fav-btn"><svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-brand">LumiTech</div>
+          <div class="pcard-name">Akıllı LED Ampul RGB 9W E27 Tuya App</div>
+          <div class="pcard-rating"><span class="rating-stars">★★★★☆</span><span class="rating-count">(2.105)</span></div>
+          <div class="pcard-price-row"><span class="price-now">₺89</span><span class="price-orig">₺160</span><span class="price-disc">-%44</span></div>
+          <div class="pcard-meta"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Ücretsiz kargo</div>
+          <button class="add-cart"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/></svg>Sepete Ekle</button>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-img" style="background:#F5F0FF"><span class="pcard-emoji">🧴</span>
+          <div class="pcard-badges"><span class="badge badge-new">YENİ</span></div>
+          <div class="fav-btn"><svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-brand">K-Beauty TR</div>
+          <div class="pcard-name">Kore Güzellik Rutin Seti 7 Adım Nemlendirici</div>
+          <div class="pcard-rating"><span class="rating-stars">★★★★★</span><span class="rating-count">(1.890)</span></div>
+          <div class="pcard-price-row"><span class="price-now">₺680</span><span class="price-orig">₺950</span><span class="price-disc">-%28</span></div>
+          <div class="pcard-meta"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Yarın teslim</div>
+          <button class="add-cart"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/></svg>Sepete Ekle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="fb-logo">ImportX</div>
+        <p>Konteyner bazlı ithalat ürünlerini son kullanıcı ve işletmelere ulaştıran Türkiye'nin önde gelen B2B/B2C platformu.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Kurumsal</h4>
+        <a>Hakkımızda</a>
+        <a>Kariyer</a>
+        <a>Basın</a>
+        <a>Yatırımcı İlişkileri</a>
+        <a>Sürdürülebilirlik</a>
+      </div>
+      <div class="footer-col">
+        <h4>Yardım</h4>
+        <a>Sıkça Sorulan Sorular</a>
+        <a>Sipariş Takibi</a>
+        <a>İade & Değişim</a>
+        <a>Kargo Politikası</a>
+        <a>Canlı Destek</a>
+      </div>
+      <div class="footer-col">
+        <h4>Tedarikçi</h4>
+        <a>Tedarikçi Ol</a>
+        <a>Seller Hub</a>
+        <a>Fulfillment (FBP)</a>
+        <a>B2B Portalı</a>
+        <a>API Entegrasyonu</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 ImportX — Dijital Solutions. Tüm hakları saklıdır. KVKK | Gizlilik | Kullanım Koşulları</div>
+      <div class="footer-pay">
+        <span class="pay-badge">VISA</span>
+        <span class="pay-badge">Mastercard</span>
+        <span class="pay-badge">iyzico</span>
+        <span class="pay-badge">BKM Express</span>
+        <span class="pay-badge">Havale/EFT</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let secs = 8*3600+43*22;
+function tick(){
+  secs--;if(secs<0)secs=86400;
+  const h=Math.floor(secs/3600),m=Math.floor((secs%3600)/60),s=secs%60;
+  const pad=n=>String(n).padStart(2,'0');
+  document.getElementById('fh').textContent=pad(h);
+  document.getElementById('fm').textContent=pad(m);
+  document.getElementById('fs').textContent=pad(s);
+}
+setInterval(tick,1000);
+
+document.querySelectorAll('.add-cart').forEach(btn=>{
+  btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    this.textContent='✓ Sepete Eklendi';
+    this.style.background='#00B074';
+    this.style.color='#fff';
+    this.style.borderColor='#00B074';
+    const cnt=document.querySelector('.cart-count');
+    cnt.textContent=parseInt(cnt.textContent)+1;
+    setTimeout(()=>{
+      this.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/></svg> Sepete Ekle';
+      this.style.background='';this.style.color='';this.style.borderColor='';
+    },1500);
+  });
+});
+
+document.querySelectorAll('.fav-btn').forEach(btn=>{
+  btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    const svg=this.querySelector('svg');
+    if(svg.getAttribute('fill')==='none'){
+      svg.setAttribute('fill','#FF6000');svg.setAttribute('stroke','#FF6000');
+    }else{
+      svg.setAttribute('fill','none');svg.setAttribute('stroke','#ccc');
+    }
+  });
+});
+
+document.querySelectorAll('.nav-item').forEach(el=>{
+  el.addEventListener('click',function(){
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+document.querySelectorAll('.sort-pill').forEach(el=>{
+  el.addEventListener('click',function(){
+    document.querySelectorAll('.sort-pill').forEach(n=>n.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+document.querySelectorAll('.cat-card').forEach(el=>{
+  el.addEventListener('click',function(){
+    document.querySelectorAll('.cat-card').forEach(n=>{n.style.borderColor='';n.style.background='';});
+    this.style.borderColor='#FF6000';this.style.background='#FFF5F0';
+  });
+});
+</script>
